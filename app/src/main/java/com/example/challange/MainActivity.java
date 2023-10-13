@@ -47,16 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        // Ovo je event listener koji ce nam trebat za funkcionalnost
-
-       /*   navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-        *       @Override
-        *       public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        *           return false;
-        *       }
-        *   });
-        */
-
     }
 
     @Override
