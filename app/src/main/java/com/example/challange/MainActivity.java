@@ -120,16 +120,11 @@ public class MainActivity extends AppCompatActivity {
             for(int grantResult : grantResults){
                 if(grantResult != PackageManager.PERMISSION_GRANTED){
                     permissionsGranted = false;
-                    break;
+                    requestPermissions();
                 }
             }
 
-            if (!permissionsGranted) {
-                Utils.showToast(MainActivity.this, "Permissions required!");
-                requestPermissions();
-            }else{
-                Utils.showToast(MainActivity.this, "All permissions granted");
-            }
+            Utils.showToast(MainActivity.this, permissionsGranted ? "All permissions granted" : "Permissions required!");
         }
     }
 }
