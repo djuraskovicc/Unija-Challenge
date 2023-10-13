@@ -30,22 +30,21 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemID = item.getItemId();
-                if(itemID == R.id.home){
-                    return true;
-                } else if (itemID == R.id.security) {
-                    return true;
-                } else if (itemID == R.id.scanner){
-                    startActivity(new Intent(MainActivity.this, ImageScanner.class));
-                } else if (itemID == R.id.about) {
-                    startActivity(new Intent(MainActivity.this, Login.class));
-                }
-                drawerLayout.closeDrawers();
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int itemID = item.getItemId();
+
+            if(itemID == R.id.home){
                 return true;
+            } else if (itemID == R.id.security) {
+                return true;
+            } else if (itemID == R.id.scanner){
+                startActivity(new Intent(MainActivity.this, ImageScanner.class));
+            } else if (itemID == R.id.about) {
+                startActivity(new Intent(MainActivity.this, Login.class));
             }
+
+            drawerLayout.closeDrawers();
+            return true;
         });
     }
 
@@ -53,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bar_menu, menu);
         //
-       /* MenuItem  recreateDB = menu.findItem(R.id.delete);
+        /* MenuItem  recreateDB = menu.findItem(R.id.delete);
         recreateDB.setOnMenuItemClickListener(v -> {
 
 
         });
         */
         return true;
-
     }
 
     @Override
