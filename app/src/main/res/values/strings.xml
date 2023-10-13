@@ -5,7 +5,7 @@
     <string name="home">Home</string>
     <string name="security">Security</string>
     <string name="profile">Profile</string>
-    <string name="about">About</string>
+    <string name="about">Login</string>
     <string name="upload">Upload</string>
     <string name="logout">Logout</string>
     <string name="my_documents">My documents</string>
