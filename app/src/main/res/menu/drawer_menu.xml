@@ -12,6 +12,10 @@
             android:id="@+id/security"
             android:icon="@drawable/security"
             android:title="@string/security" />
+        <item
+            android:id="@+id/scanner"
+            android:icon="@drawable/document_scanner"
+            android:title="@string/scan_image" />
     </group>
 
     <item android:title="@string/profile">

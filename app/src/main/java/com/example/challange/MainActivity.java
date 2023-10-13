@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,15 +30,23 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Ovo je event listener koji ce nam trebat za funkcionalnost
-
-       /*   navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-        *       @Override
-        *       public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        *           return false;
-        *       }
-        *   });
-        */
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemID = item.getItemId();
+                if(itemID == R.id.home){
+                    return true;
+                } else if (itemID == R.id.security) {
+                    return true;
+                } else if (itemID == R.id.scanner){
+                    startActivity(new Intent(MainActivity.this, ImageScanner.class));
+                } else if (itemID == R.id.about) {
+                    startActivity(new Intent(MainActivity.this, Login.class));
+                }
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        });
     }
 
     @Override
