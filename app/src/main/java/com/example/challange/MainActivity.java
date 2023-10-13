@@ -47,12 +47,30 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        // Ovo je event listener koji ce nam trebat za funkcionalnost
+
+       /*   navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        *       @Override
+        *       public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        *           return false;
+        *       }
+        *   });
+        */
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bar_menu, menu);
+        //
+       /* MenuItem  recreateDB = menu.findItem(R.id.delete);
+        recreateDB.setOnMenuItemClickListener(v -> {
+
+
+        });
+        */
         return true;
+
     }
 
     @Override
