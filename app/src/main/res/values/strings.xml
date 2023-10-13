@@ -5,7 +5,7 @@
     <string name="home">Home</string>
     <string name="security">Security</string>
     <string name="profile">Profile</string>
-    <string name="about">Login</string>
+    <string name="about">Account</string>
     <string name="upload">Upload</string>
     <string name="logout">Logout</string>
     <string name="my_documents">My documents</string>
@@ -14,4 +14,7 @@
     <string name="rate_us">Rate us</string>
     <string name="delete">Delete</string>
     <string name="scan_image">Scan Image</string>
+    <string name="converter_text">Image to text converter</string>
+    <string name="copy">Copy</string>
+    <string name="clear">Clear</string>
 </resources>
