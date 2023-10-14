@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int REQUEST_CAMERA_AND_IMAGES_PERMISSION = 100;
+    private static final int REQUEST_CAMERA_AND_IMAGES_PERMISSION = 101;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;

@@ -1,7 +1,6 @@
 package com.example.challange;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,9 +25,6 @@ public class ImageScanner extends AppCompatActivity {
         scanPicture = findViewById(R.id.scanner_picture);
         scanText = findViewById(R.id.convert_text);
 
-
-        camera.setOnClickListener(picture -> {
-
-        });
+        camera.setOnClickListener(picture -> Utils.showToast(ImageScanner.this, "Cheese"));
     }
 }
