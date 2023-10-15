@@ -6,27 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ImageScanner">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/extracted_text_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/utilities"
-        android:visibility="gone"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="10dp">
-
-        <EditText
-            android:id="@+id/extracted_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Text will be displayed here"
-            android:inputType="textMultiLine"
-            tools:ignore="TouchTargetSizeCheck" />
-
-    </androidx.cardview.widget.CardView>
-
     <ImageView
         android:id="@+id/scanner_picture"
         android:layout_width="150dp"
@@ -49,6 +28,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:layout_below="@id/scanner_picture"/>
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/utilities"/>
 
     <RelativeLayout
         android:id="@+id/utilities"
