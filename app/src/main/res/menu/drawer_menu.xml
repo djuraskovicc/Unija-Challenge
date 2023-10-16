@@ -7,17 +7,32 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/home"
+                    android:icon="@drawable/home"
+                    android:title="@string/home" />
+                <item
                     android:id="@+id/about"
                     android:icon="@drawable/account_circle"
                     android:title="@string/about"/>
                 <item
+                    android:id="@+id/security"
+                    android:icon="@drawable/security"
+                    android:title="@string/security" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/utilities">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/scanner"
+                    android:icon="@drawable/document_scanner"
+                    android:title="@string/scan_image" />
+                <item
                     android:id="@+id/upload"
                     android:icon="@drawable/cloud_upload"
                     android:title="@string/upload"/>
-                <item
-                    android:id="@+id/logout"
-                    android:icon="@drawable/logout"
-                    android:title="@string/logout"/>
                 <item
                     android:id="@+id/documents"
                     android:icon="@drawable/documents"
@@ -26,24 +41,13 @@
         </menu>
     </item>
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/home"
-            android:icon="@drawable/home"
-            android:title="@string/home" />
-        <item
-            android:id="@+id/security"
-            android:icon="@drawable/security"
-            android:title="@string/security" />
-        <item
-            android:id="@+id/scanner"
-            android:icon="@drawable/document_scanner"
-            android:title="@string/scan_image" />
-    </group>
-
     <item android:title="@string/communication">
         <menu>
             <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/logout"
+                    android:title="@string/logout"/>
                 <item
                     android:id="@+id/share"
                     android:icon="@drawable/share"
