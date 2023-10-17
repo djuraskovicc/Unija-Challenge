@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnMenuItemClickListener(item -> {
             startActivity(new Intent(MainActivity.this, settings.class));
             finish();
+            return false;
         });
         
         return true;
