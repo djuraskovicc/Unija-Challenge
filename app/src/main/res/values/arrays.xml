@@ -1,12 +1,12 @@
 <resources>
     <string-array name="language_entries">
-        <item>English</item>
-        <item>CG</item>
+        <item>Crnogorski</item>
+        <item>Engleski</item>
         <!-- Add other languages as needed -->
     </string-array>
     <string-array name="language_values">
-        <item>en</item>
         <item>cg</item>
+        <item>en</item>
         <!-- Add corresponding language codes here -->
     </string-array>
 </resources>
