@@ -37,4 +37,12 @@ public class Settings extends AppCompatActivity {
             finish();
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        saveButton.setOnClickListener(null);
+        languageSpinner.setAdapter(null);
+        finish();
+        super.onDestroy();
+    }
 }
