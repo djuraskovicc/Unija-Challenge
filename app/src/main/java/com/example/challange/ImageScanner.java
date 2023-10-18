@@ -1,41 +1,25 @@
 package com.example.challange;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.common.util.concurrent.ListenableFuture;
-
-import java.io.IOException;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class ImageScanner extends AppCompatActivity {
     OkHttpClient httpClient;
     ImageButton clear, camera, copy;
     ImageView scanPicture;
     TextView scanText;
-    String getUrl, postUrl;
     PreviewView cameraView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
@@ -80,26 +64,5 @@ public class ImageScanner extends AppCompatActivity {
                 Log.e("ImageScanner", "Error starting camera preview: " + e.getLocalizedMessage());
             }
         }, ContextCompat.getMainExecutor(this));
-    }
-
-    public void getRequest(){
-        Request request = new Request.Builder().url(getUrl).build();
-
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
-            }
-        });
     }
 }

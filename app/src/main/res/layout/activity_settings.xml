@@ -1,83 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".settings">
-
-    <!-- Blue top bar -->
-    <View
-        android:id="@+id/topBar"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:background="#36B7F1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Add an ImageButton at the top-left corner -->
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/arrow_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".Settings"
+    tools:ignore="UseSwitchCompatOrMaterialXml">
 
     <Switch
         android:id="@+id/stayLoggedInSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="132dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:checked="true"
-        android:text="Stay Logged In"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="sans-serif"
+        android:minHeight="48dp"
+        android:text="@string/stay_logged_in"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/languageSpinner"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/stayLoggedInSwitch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/background_language_section" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="100dp"
-        android:text="Select Language:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stayLoggedInSwitch" />
-
-    <Spinner
-        android:id="@+id/languageSpinner"
-        android:layout_width="294dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stayLoggedInSwitch"
-        android:background="@drawable/background_language_section"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/languageSpinner"
+        android:layout_marginTop="10dp"
+        android:text="@string/select_language" />
 
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
         android:text="Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/languageSpinner" />
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:layout_above="@+id/appVersionText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="140dp"/>
 
     <TextView
         android:id="@+id/appVersionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:text="@string/app_version"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+</RelativeLayout>

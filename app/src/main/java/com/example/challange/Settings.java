@@ -1,20 +1,21 @@
 package com.example.challange;
-import android.app.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-public class settings extends Activity {
+public class Settings extends AppCompatActivity {
 
-    private Switch stayLoggedInSwitch;
-    private Spinner languageSpinner;
-    private Button saveButton;
+    Switch stayLoggedInSwitch;
+    Spinner languageSpinner;
+    Button saveButton;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +31,10 @@ public class settings extends Activity {
         languageSpinner.setAdapter(adapter);
 
         // Handle the "Save" button click
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Save settings and return to the main activity
-                finish();
-            }
+        saveButton.setOnClickListener(view -> {
+            // Save settings and return to the main activity
+            startActivity(new Intent(Settings.this, MainActivity.class));
+            finish();
         });
     }
 }
