@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ImageScanner.class));
             } else if (itemID == R.id.about) {
                 startActivity(new Intent(MainActivity.this, Login.class));
+            } else if (itemID == R.id.settings){
+                startActivity(new Intent(MainActivity.this, Settings.class));
             }
 
             drawerLayout.closeDrawers();
@@ -65,14 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bar_menu, menu);
-
-        MenuItem settings = menu.findItem(R.id.settings);
-        settings.setOnMenuItemClickListener(item -> {
-            startActivity(new Intent(MainActivity.this, Settings.class));
-            return true;
-        });
-        
         return true;
     }
 

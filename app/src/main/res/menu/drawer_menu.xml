@@ -18,6 +18,10 @@
                     android:id="@+id/security"
                     android:icon="@drawable/security"
                     android:title="@string/security" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/logout"
+                    android:title="@string/logout"/>
             </group>
         </menu>
     </item>
@@ -29,6 +33,10 @@
                     android:id="@+id/scanner"
                     android:icon="@drawable/document_scanner"
                     android:title="@string/scan_image" />
+                <item
+                    android:id="@+id/settings"
+                    android:icon="@drawable/settings"
+                    android:title="@string/settings"/>
                 <item
                     android:id="@+id/upload"
                     android:icon="@drawable/cloud_upload"
@@ -44,10 +52,6 @@
     <item android:title="@string/communication">
         <menu>
             <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/logout"
-                    android:icon="@drawable/logout"
-                    android:title="@string/logout"/>
                 <item
                     android:id="@+id/share"
                     android:icon="@drawable/share"
