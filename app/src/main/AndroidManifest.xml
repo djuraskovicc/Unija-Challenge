@@ -22,8 +22,7 @@
         <activity
             android:name=".Settings"
             android:exported="false"
-            android:label="Settings"
-            android:parentActivityName=".MainActivity" />
+            android:label="Settings"/>
         <activity
             android:name=".ImageScanner"
             android:exported="false"

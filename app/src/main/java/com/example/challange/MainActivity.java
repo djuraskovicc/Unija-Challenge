@@ -20,23 +20,15 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_AND_IMAGES_PERMISSION = 101;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle drawerToggle;
+    DrawerHelper drawerHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigation_view);
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
-
-        drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        drawerHelper = new DrawerHelper(this);
+        drawerHelper.init();
         menuClickListener();
 
         if(!checkCameraPermission() && !checkStoragePermission()){
@@ -45,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void menuClickListener(){
-        navigationView.setNavigationItemSelectedListener(item -> {
+        drawerHelper.getNavigationView().setNavigationItemSelectedListener(item -> {
             int itemID = item.getItemId();
 
             if(itemID == R.id.home){
@@ -54,13 +46,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else if (itemID == R.id.scanner){
                 startActivity(new Intent(MainActivity.this, ImageScanner.class));
+                return true;
             } else if (itemID == R.id.about) {
                 startActivity(new Intent(MainActivity.this, Login.class));
+                return true;
             } else if (itemID == R.id.settings){
                 startActivity(new Intent(MainActivity.this, Settings.class));
+                return true;
             }
 
-            drawerLayout.closeDrawers();
+            drawerHelper.getDrawerLayout().closeDrawers();
             return true;
         });
     }
@@ -72,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(drawerToggle.onOptionsItemSelected(item)){
+        if(drawerHelper.getDrawerToggle().onOptionsItemSelected(item)){
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -80,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
+        if(drawerHelper.getDrawerLayout().isDrawerOpen(GravityCompat.START)){
+            drawerHelper.getDrawerLayout().closeDrawer(GravityCompat.START);
         }else{
             super.onBackPressed();
         }
