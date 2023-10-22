@@ -27,10 +27,6 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        drawerHelper = new DrawerHelper(this);
-        drawerHelper.init();
-        menuClickListener();
-
         stayLoggedInSwitch = findViewById(R.id.stayLoggedInSwitch);
         languageSpinner = findViewById(R.id.languageSpinner);
         saveButton = findViewById(R.id.saveButton);
@@ -46,6 +42,10 @@ public class Settings extends AppCompatActivity {
             startActivity(new Intent(Settings.this, MainActivity.class));
             finish();
         });
+
+        drawerHelper = new DrawerHelper(this);
+        drawerHelper.init();
+        menuClickListener();
     }
 
     private void menuClickListener(){

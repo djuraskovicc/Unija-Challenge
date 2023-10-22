@@ -20,7 +20,10 @@
         android:minHeight="48dp"
         android:text="@string/stay_logged_in"
         android:textSize="28sp"
-        android:textStyle="bold" />
+        android:enabled="true"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true" />
 
     <Spinner
         android:id="@+id/languageSpinner"
@@ -28,6 +31,8 @@
         android:layout_height="48dp"
         android:layout_below="@+id/stayLoggedInSwitch"
         android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_marginTop="28dp"
         android:background="@drawable/background_language_section" />
 
@@ -44,6 +49,9 @@
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
         android:text="Save"
         android:textSize="18sp"
         android:textAllCaps="false"
@@ -62,6 +70,4 @@
         android:textSize="16sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
-
-
 </RelativeLayout>
