@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     tools:openDrawer="start"
-    android:elevation="20dp">
-
+    android:elevation="10dp">
+    
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
@@ -19,6 +19,6 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/header"
         app:menu="@menu/drawer_menu"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start|bottom"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

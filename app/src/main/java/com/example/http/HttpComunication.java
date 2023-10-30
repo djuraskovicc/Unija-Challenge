@@ -1,6 +1,8 @@
 package com.example.http;
 
 import android.app.Activity;
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +16,41 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpComunication {
+
+    public static void postRequest(Activity activity, OkHttpClient httpClient, File file, String postUrl) {
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("fileUpload", file.getName(),
+                        RequestBody.create(MediaType.parse("image/jpeg"), file))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(postUrl)
+                .post(requestBody)
+                .build();
+
+        httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> {
+                    // Handle the failure here
+                });
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                activity.runOnUiThread(() -> {
+                    if (response.code() == 200) {
+                        // Handle a successful response
+                    } else {
+                        // Handle an unsuccessful response
+                    }
+                });
+            }
+        });
+    }
+
 
     public static void getRequest(Activity activity, OkHttpClient httpClient, File file, String getUrl){
         Request request = new Request.Builder().url(getUrl).build();
@@ -38,6 +75,7 @@ public class HttpComunication {
                             .post(requestBody)
                             .build();
                     Response response1;
+
                     try {
                         response1 = client.newCall(request1).execute();
                     } catch (IOException e) {
@@ -50,9 +88,5 @@ public class HttpComunication {
                 });
             }
         });
-    }
-
-    public static void postRequest(){
-
     }
 }

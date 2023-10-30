@@ -1,7 +1,10 @@
 package com.example.challange;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
@@ -12,7 +15,12 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.http.HttpComunication;
 import com.google.common.util.concurrent.ListenableFuture;
+
+import java.io.File;
+
 import okhttp3.OkHttpClient;
 
 public class ImageScanner extends AppCompatActivity {
@@ -32,13 +40,12 @@ public class ImageScanner extends AppCompatActivity {
         clear = findViewById(R.id.clear_button);
         camera = findViewById(R.id.camera);
         copy = findViewById(R.id.copy_button);
-        scanPicture = findViewById(R.id.scanner_picture);
-        scanText = findViewById(R.id.convert_text);
         cameraView = findViewById(R.id.camera_preview);
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+        startCameraPreview();
 
-        camera.setOnClickListener(picture -> startCameraPreview());
+        camera.setOnClickListener(picture -> captureImage());
     }
 
     private void startCameraPreview() {
@@ -64,5 +71,30 @@ public class ImageScanner extends AppCompatActivity {
                 Log.e("ImageScanner", "Error starting camera preview: " + e.getLocalizedMessage());
             }
         }, ContextCompat.getMainExecutor(this));
+    }
+
+    private void sendImageToServer(File imageFile) {
+        String serverUrl = "62.171.137.95:8080";
+        HttpComunication.postRequest(this, httpClient, imageFile, serverUrl);
+    }
+
+    private void captureImage(){
+        ImageCapture imageCapture = new ImageCapture.Builder().build();
+
+        File fileOutput = new File(getExternalFilesDir(null), "image.jpg");
+        ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(fileOutput).build();
+
+        imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
+            @Override
+            public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                File capturedImage = fileOutput;
+                sendImageToServer(capturedImage);
+            }
+
+            @Override
+            public void onError(@NonNull ImageCaptureException exception) {
+                Log.e("ImageScanner", "Error capturing image: " + exception.getMessage());
+            }
+        });
     }
 }

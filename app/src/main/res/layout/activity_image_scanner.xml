@@ -6,36 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ImageScanner">
 
-    <ImageView
-        android:id="@+id/scanner_picture"
-        android:layout_width="150dp"
-        android:layout_height="180dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/scan"
-        android:visibility="visible"
-        android:background="@drawable/custom_scan_image" />
-
-    <TextView
-        android:id="@+id/convert_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/converter_text"
-        android:textColor="#0578EB"
-        android:fontFamily="sans-serif-light"
-        android:visibility="visible"
-        android:textStyle="bold|italic"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:layout_below="@id/scanner_picture"/>
-
     <androidx.camera.view.PreviewView
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_above="@+id/utilities"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/utilities"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
 
     <RelativeLayout
         android:id="@+id/utilities"
