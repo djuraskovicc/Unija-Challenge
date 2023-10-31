@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+
+import com.example.challange.Utils;
+
 import java.io.File;
 import java.io.IOException;
 import okhttp3.Call;
@@ -42,9 +45,9 @@ public class HttpComunication {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 activity.runOnUiThread(() -> {
                     if (response.code() == 200) {
-                        // Handle a successful response
+                        Utils.showToast(activity, "Success");
                     } else {
-                        // Handle an unsuccessful response
+                        Utils.showToast(activity, "Fail");
                     }
                 });
             }

@@ -87,8 +87,7 @@ public class ImageScanner extends AppCompatActivity {
         imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
             @Override
             public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                File capturedImage = fileOutput;
-                sendImageToServer(capturedImage);
+                sendImageToServer(fileOutput);
             }
 
             @Override
