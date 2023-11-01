@@ -1,14 +1,5 @@
 package com.example.challange;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,16 +7,30 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.google.android.material.navigation.NavigationView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_AND_IMAGES_PERMISSION = 101;
     DrawerHelper drawerHelper;
+    RecyclerView recyclerView;
+    ArrayList<GmailItem> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        items = new ArrayList<>();
 
         drawerHelper = new DrawerHelper(this);
         drawerHelper.init();
@@ -34,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
         if(!checkCameraPermission() && !checkStoragePermission()){
             requestPermissions();
         }
+
+        gmailItems();
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setAdapter(new MainAdapter(MainActivity.this, items));
+    }
+
+    private void gmailItems(){
+        items.add(new GmailItem("Email", "exaple123@gmail.com"));
+        items.add(new GmailItem("Email", "exaple124@gmail.com"));
+        items.add(new GmailItem("Email", "exaple125@gmail.com"));
+        items.add(new GmailItem("Email", "exaple126@gmail.com"));
+        items.add(new GmailItem("Email", "exaple127@gmail.com"));
+        items.add(new GmailItem("Email", "exaple128@gmail.com"));
+        items.add(new GmailItem("Email", "exaple129@gmail.com"));
+        items.add(new GmailItem("Email", "exaple130@gmail.com"));
+        items.add(new GmailItem("Email", "exaple131@gmail.com"));
     }
 
     private void menuClickListener(){
