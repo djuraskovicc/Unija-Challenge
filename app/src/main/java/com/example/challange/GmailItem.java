@@ -1,10 +1,10 @@
 package com.example.challange;
 
 public class GmailItem {
-    String email, emailAddress;
+    String email = "Gmail";
+    String emailAddress;
 
-    public GmailItem(String email, String emailAddress){
-        this.email = email;
+    public GmailItem(String emailAddress){
         this.emailAddress = emailAddress;
     }
 

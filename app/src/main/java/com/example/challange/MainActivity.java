@@ -46,15 +46,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gmailItems(){
-        items.add(new GmailItem("Email", "exaple123@gmail.com"));
-        items.add(new GmailItem("Email", "exaple124@gmail.com"));
-        items.add(new GmailItem("Email", "exaple125@gmail.com"));
-        items.add(new GmailItem("Email", "exaple126@gmail.com"));
-        items.add(new GmailItem("Email", "exaple127@gmail.com"));
-        items.add(new GmailItem("Email", "exaple128@gmail.com"));
-        items.add(new GmailItem("Email", "exaple129@gmail.com"));
-        items.add(new GmailItem("Email", "exaple130@gmail.com"));
-        items.add(new GmailItem("Email", "exaple131@gmail.com"));
+        items.add(new GmailItem("exaple123@gmail.com"));
+        items.add(new GmailItem("exaple124@gmail.com"));
+        items.add(new GmailItem("exaple125@gmail.com"));
+        items.add(new GmailItem("exaple126@gmail.com"));
+        items.add(new GmailItem("exaple127@gmail.com"));
+        items.add(new GmailItem("exaple128@gmail.com"));
+        items.add(new GmailItem("exaple129@gmail.com"));
+        items.add(new GmailItem("exaple130@gmail.com"));
+        items.add(new GmailItem("exaple131@gmail.com"));
     }
 
     private void menuClickListener(){
