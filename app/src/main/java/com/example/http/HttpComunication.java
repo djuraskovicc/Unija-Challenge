@@ -19,12 +19,11 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpComunication {
-
     public static void postRequest(Activity activity, OkHttpClient httpClient, File file, String postUrl) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("fileUpload", file.getName(),
-                        RequestBody.create(MediaType.parse("image/jpeg"), file))
+                        RequestBody.create(MediaType.parse("image/jpg"), file))
                 .build();
 
         Request request = new Request.Builder()
@@ -37,7 +36,7 @@ public class HttpComunication {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
                 activity.runOnUiThread(() -> {
-                    // Handle the failure here
+                    Utils.showToast(activity, "Something went wrong :(");
                 });
             }
 
@@ -53,7 +52,6 @@ public class HttpComunication {
             }
         });
     }
-
 
     public static void getRequest(Activity activity, OkHttpClient httpClient, File file, String getUrl){
         Request request = new Request.Builder().url(getUrl).build();

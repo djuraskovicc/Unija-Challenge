@@ -15,11 +15,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int REQUEST_CAMERA_AND_IMAGES_PERMISSION = 101;
+    private static final int REQUEST_PERMISSIONS = 101;
     DrawerHelper drawerHelper;
     RecyclerView recyclerView;
     ArrayList<GmailItem> items;
@@ -36,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         drawerHelper.init();
         menuClickListener();
 
-        if(!checkCameraPermission() && !checkStoragePermission()){
+        if(!checkCameraPermission()
+                || !checkStoragePermission()
+                || !checkInternetPermission()){
             requestPermissions();
         }
 
@@ -104,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void requestPermissions(){
-        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES};
-        ActivityCompat.requestPermissions(MainActivity.this, permissions, REQUEST_CAMERA_AND_IMAGES_PERMISSION);
+        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.INTERNET};
+        ActivityCompat.requestPermissions(MainActivity.this, permissions, REQUEST_PERMISSIONS);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -120,11 +121,17 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean checkInternetPermission() {
+        return ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == REQUEST_CAMERA_AND_IMAGES_PERMISSION){
+        if(requestCode == REQUEST_PERMISSIONS){
             boolean permissionsGranted = true;
 
             for(int grantResult : grantResults){

@@ -9,27 +9,20 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.example.http.HttpComunication;
 import com.google.common.util.concurrent.ListenableFuture;
-
 import java.io.File;
-
 import okhttp3.OkHttpClient;
 
 public class ImageScanner extends AppCompatActivity {
     OkHttpClient httpClient;
     ImageButton clear, camera, copy;
-    ImageView scanPicture;
-    TextView scanText;
     PreviewView cameraView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+    private ImageCapture imageCapture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +36,8 @@ public class ImageScanner extends AppCompatActivity {
         cameraView = findViewById(R.id.camera_preview);
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
-        startCameraPreview();
 
+        startCameraPreview();
         camera.setOnClickListener(picture -> captureImage());
     }
 
@@ -63,9 +56,12 @@ public class ImageScanner extends AppCompatActivity {
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(cameraView.getSurfaceProvider());
 
+                // Initialize the ImageCapture use case and bind it to the camera
+                imageCapture = new ImageCapture.Builder().build();
+
                 // Bind the camera use cases to the camera view
                 cameraProvider.unbindAll();
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview);
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture);
 
             } catch (Exception e) {
                 Log.e("ImageScanner", "Error starting camera preview: " + e.getLocalizedMessage());
@@ -73,27 +69,24 @@ public class ImageScanner extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
-    private void sendImageToServer(File imageFile) {
-        String serverUrl = "62.171.137.95:8080";
-        HttpComunication.postRequest(this, httpClient, imageFile, serverUrl);
-    }
-
     private void captureImage(){
-        ImageCapture imageCapture = new ImageCapture.Builder().build();
+        if (imageCapture != null) {
+            File fileOutput = new File(getExternalFilesDir(null), "image.jpg");
+            ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(fileOutput).build();
 
-        File fileOutput = new File(getExternalFilesDir(null), "image.jpg");
-        ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(fileOutput).build();
+            imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
+                @Override
+                public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                    HttpComunication.postRequest(ImageScanner.this, httpClient, fileOutput, "http://62.171.137.95:8080/");
+                }
 
-        imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
-            @Override
-            public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                sendImageToServer(fileOutput);
-            }
-
-            @Override
-            public void onError(@NonNull ImageCaptureException exception) {
-                Log.e("ImageScanner", "Error capturing image: " + exception.getMessage());
-            }
-        });
+                @Override
+                public void onError(@NonNull ImageCaptureException exception) {
+                    Log.e("ImageScanner", "Error capturing image: " + exception.getMessage());
+                }
+            });
+        } else {
+            Log.e("ImageScanner", "ImageCapture is not initialized");
+        }
     }
 }
