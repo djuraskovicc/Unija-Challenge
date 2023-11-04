@@ -43,10 +43,18 @@ public class HttpComunication {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 activity.runOnUiThread(() -> {
-                    if (response.code() == 200) {
-                        Utils.showToast(activity, "Success");
-                    } else {
-                        Utils.showToast(activity, "Fail");
+                    try {
+                        if (response.isSuccessful()) {
+                            // Process the response here
+                            String responseBody = response.body().string();
+                            // Close the response body
+                            response.close();
+                            Utils.showToast(activity, "Success");
+                        } else {
+                            Utils.showToast(activity, "Fail");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 });
             }
