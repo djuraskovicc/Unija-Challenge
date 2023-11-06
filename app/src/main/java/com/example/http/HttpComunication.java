@@ -51,7 +51,7 @@ public class HttpComunication {
                             response.close();
                             Utils.showToast(activity, "Success");
                         } else {
-                            Utils.showToast(activity, "Fail");
+                            Utils.showToast(activity, "Fail, Code: " + String.valueOf(response.code()));
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -77,7 +77,7 @@ public class ImageScanner extends AppCompatActivity {
             imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
                 @Override
                 public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                    HttpComunication.postRequest(ImageScanner.this, httpClient, fileOutput, "http://62.171.137.95:8080/");
+                    HttpComunication.postRequest(ImageScanner.this, httpClient, fileOutput, "http://62.171.137.95:8080/api/imageUpload");
                 }
 
                 @Override
