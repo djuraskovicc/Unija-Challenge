@@ -40,8 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CardView card;
-        TextView email;
-        TextView emailAddress;
+        TextView email, emailAddress;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

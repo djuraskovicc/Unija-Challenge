@@ -47,15 +47,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gmailItems(){
-        items.add(new GmailItem("exaple123@gmail.com"));
-        items.add(new GmailItem("exaple124@gmail.com"));
-        items.add(new GmailItem("exaple125@gmail.com"));
-        items.add(new GmailItem("exaple126@gmail.com"));
-        items.add(new GmailItem("exaple127@gmail.com"));
-        items.add(new GmailItem("exaple128@gmail.com"));
-        items.add(new GmailItem("exaple129@gmail.com"));
-        items.add(new GmailItem("exaple130@gmail.com"));
-        items.add(new GmailItem("exaple131@gmail.com"));
+        for(int i = 0; i <= 10; i++){
+            items.add(new GmailItem("exaple12" + i + "@gmail.com"));
+        }
     }
 
     private void menuClickListener(){
@@ -75,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemID == R.id.settings){
                 startActivity(new Intent(MainActivity.this, Settings.class));
                 return true;
+            } else if (itemID == R.id.documents) {
+                startActivity(new Intent(MainActivity.this, Documents.class));
             }
 
             drawerHelper.getDrawerLayout().closeDrawers();
