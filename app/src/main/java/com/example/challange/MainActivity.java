@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void gmailItems(){
         for(int i = 0; i <= 10; i++){
-            items.add(new GmailItem("exaple12" + i + "@gmail.com"));
+            items.add(new GmailItem("user" + (i+1) + "@mail.com"));
         }
     }
 

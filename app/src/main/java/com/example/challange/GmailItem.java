@@ -1,7 +1,7 @@
 package com.example.challange;
 
 public class GmailItem {
-    String email = "Gmail";
+    String email = "You have a new Mail !";
     String emailAddress;
 
     public GmailItem(String emailAddress){

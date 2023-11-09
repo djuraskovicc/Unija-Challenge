@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="15dp"
+    android:padding="10dp"
     android:orientation="vertical"
-    android:layout_height="210dp"
+    android:layout_height="255dp"
     android:background="@drawable/user_profile"
     android:gravity="bottom">
 
@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:text="Your profile"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="exaple123@gmail.com"
-        android:textSize="18sp"/>
+        android:text="user@mail.com"
+        android:textSize="18sp" />
 
 </LinearLayout>
