@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue_background">#732042</color>
+    <color name="icon_background">#661E2F</color>
     <color name="blue">#732042</color>
     <color name="light_blue">#732042</color>
     <color name="purple_200">#FFBB86FC</color>
