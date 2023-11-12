@@ -20,20 +20,24 @@
         android:theme="@style/Theme.App.Starting"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.Challenge"
             android:name=".Documents"
             android:exported="false"
             android:label="Documents"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:theme="@style/Theme.Challenge"
             android:name=".Settings"
             android:exported="false"
             android:label="Settings" />
         <activity
+            android:theme="@style/Theme.Challenge"
             android:name=".ImageScanner"
             android:exported="false"
             android:label="Document scanner"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:theme="@style/Theme.Challenge"
             android:name=".Login"
             android:exported="false"
             android:label="Account"

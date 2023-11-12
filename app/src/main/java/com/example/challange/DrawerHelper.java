@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 public class DrawerHelper {
     static ActionBarDrawerToggle drawerToggle;
     static DrawerLayout drawerLayout;
@@ -22,7 +24,7 @@ public class DrawerHelper {
 
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
-        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(activity.getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     public static ActionBarDrawerToggle getDrawerToggle(){

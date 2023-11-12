@@ -27,14 +27,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_Challenge);
         setContentView(R.layout.activity_main);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        items = new ArrayList<>();
 
         drawerHelper = new DrawerHelper(this);
         drawerHelper.init();
         menuClickListener();
+
+        recyclerView = findViewById(R.id.recycler_view);
+        items = new ArrayList<>();
 
         if(!checkCameraPermission()
                 || !checkStoragePermission()
