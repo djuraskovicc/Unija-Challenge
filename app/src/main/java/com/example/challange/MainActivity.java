@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gmailItems(){
-        for(int i = 0; i <= 10; i++){
-            items.add(new GmailItem("user" + (i+1) + "@mail.com"));
+        for(int i = 1; i <= 10; i++){
+            items.add(new GmailItem("user" + 1 + "@email.com"));
         }
     }
 

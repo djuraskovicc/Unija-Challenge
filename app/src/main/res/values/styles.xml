@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+    <style name="Theme.App.Starting" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowSplashScreenBackground">@drawable/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/unija</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <!-- Set the theme of the Activity that directly follows your splash screen. -->
+        <!-- Required -->
+        <item name="postSplashScreenTheme">@style/Theme.Challenge</item>
     </style>
 </resources>
