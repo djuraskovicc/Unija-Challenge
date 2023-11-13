@@ -1,11 +1,8 @@
 package com.example.http;
 
 import android.app.Activity;
-
 import androidx.annotation.NonNull;
-
 import com.example.challange.Utils;
-
 import java.io.File;
 import java.io.IOException;
 import okhttp3.Call;
@@ -57,7 +54,42 @@ public class HttpCommunication {
         });
     }
 
-    public static void getRequest(Activity activity, OkHttpClient httpClient, File file, String getUrl){
+    public static void getRequest(Activity activity, OkHttpClient httpClient, String getUrl) {
+        Request request = new Request.Builder()
+                .url(getUrl)
+                .get()
+                .build();
+
+        httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+                activity.runOnUiThread(() -> Utils.showToast(activity, "Something went wrong :("));
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                activity.runOnUiThread(() -> {
+                    try {
+                        if (response.code() == 200) {
+                            assert response.body() != null;
+                            String responseBody = response.body().string();
+                            response.close();
+                            Utils.showToast(activity, "Success");
+                            // Do something with the responseBody, e.g., print it or use it as needed
+                            System.out.println(responseBody);
+                        } else {
+                            Utils.showToast(activity, "Fail, Code: " + response.code());
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+    }
+
+    /*public static void getRequest(Activity activity, OkHttpClient httpClient, File file, String getUrl){
         Request request = new Request.Builder().url(getUrl).build();
 
         httpClient.newCall(request).enqueue(new Callback() {
@@ -72,8 +104,7 @@ public class HttpCommunication {
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                             .addFormDataPart("fileUpload", file.getName(),
-                                    RequestBody.create(MediaType.parse("text/json"), file))
-                            .build();
+                                    RequestBody.create(MediaType.parse("text/json"), file)).build();
 
                     Request request1 = new Request.Builder()
                             .url(getUrl)
@@ -93,5 +124,5 @@ public class HttpCommunication {
                 });
             }
         });
-    }
+    }*/
 }

@@ -1,23 +1,23 @@
 package com.example.challange;
 
 public class DocumentItem {
-    String documentName, date, ocrText;
+    String fileName, uploadDate, fileContents;
 
-    public DocumentItem(String documentName, String date, String ocrText){
-        this.documentName = documentName;
-        this.date = date;
-        this.ocrText = ocrText;
+    public DocumentItem(String fileName, String uploadDate, String fileContents){
+        this.fileName = fileName;
+        this.uploadDate = uploadDate;
+        this.fileContents = fileContents;
     }
 
     public String getDocumentName(){
-        return documentName;
+        return fileName;
     }
 
     public String getDocumentDate(){
-        return date;
+        return uploadDate;
     }
 
     public String getOcrText(){
-        return ocrText;
+        return fileContents;
     }
 }
