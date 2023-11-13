@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import com.example.http.HttpComunication;
+import com.example.http.HttpCommunication;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.io.File;
 import okhttp3.OkHttpClient;
@@ -77,7 +77,7 @@ public class ImageScanner extends AppCompatActivity {
             imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
                 @Override
                 public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                    HttpComunication.postRequest(ImageScanner.this, httpClient, fileOutput, "http://62.171.137.95:8080/api/imageUpload");
+                    HttpCommunication.postRequest(ImageScanner.this, httpClient, fileOutput, "http://62.171.137.95:8080/api/imageUpload");
                 }
 
                 @Override

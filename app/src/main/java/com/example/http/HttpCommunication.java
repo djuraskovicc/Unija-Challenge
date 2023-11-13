@@ -1,7 +1,6 @@
 package com.example.http;
 
 import android.app.Activity;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -18,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class HttpComunication {
+public class HttpCommunication {
     public static void postRequest(Activity activity, OkHttpClient httpClient, File file, String postUrl) {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -35,9 +34,7 @@ public class HttpComunication {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
-                activity.runOnUiThread(() -> {
-                    Utils.showToast(activity, "Something went wrong :(");
-                });
+                activity.runOnUiThread(() -> Utils.showToast(activity, "Something went wrong :("));
             }
 
             @Override
@@ -45,13 +42,12 @@ public class HttpComunication {
                 activity.runOnUiThread(() -> {
                     try {
                         if (response.isSuccessful()) {
-                            // Process the response here
+                            assert response.body() != null;
                             String responseBody = response.body().string();
-                            // Close the response body
                             response.close();
                             Utils.showToast(activity, "Success");
                         } else {
-                            Utils.showToast(activity, "Fail, Code: " + String.valueOf(response.code()));
+                            Utils.showToast(activity, "Fail, Code: " + response.code());
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

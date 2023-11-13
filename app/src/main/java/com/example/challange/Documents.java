@@ -25,7 +25,8 @@ public class Documents extends AppCompatActivity {
 
     private void documentItems(){
         for(int i = 0; i <= 10; i++){
-            documents.add(new DocumentItem("Document name", "1/" + i + "/2000"));
+            documents.add(new DocumentItem("Document name",
+                    "1/" + i + "/2000",  "Document " + i + " text"));
         }
     }
 }

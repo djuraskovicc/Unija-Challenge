@@ -36,6 +36,7 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
         holder.card.setOnClickListener(click -> {
             Intent intent = new Intent(context, FileViewer.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("fileContent", item.getOcrText());
             context.startActivity(intent);
         });
     }
