@@ -1,6 +1,7 @@
 package com.example.challange;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,12 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
         DocumentItem item = documents.get(position);
         holder.documentName.setText(item.getDocumentName());
         holder.date.setText(item.getDocumentDate());
+
+        holder.card.setOnClickListener(click -> {
+            Intent intent = new Intent(context, FileViewer.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
     }
 
     @Override
