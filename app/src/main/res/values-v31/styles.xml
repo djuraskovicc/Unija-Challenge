@@ -3,7 +3,7 @@
     <style name="Theme.App.Starting" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowSplashScreenBackground">@drawable/splash_background</item>
         <item name="android:windowSplashScreenAnimatedIcon">@mipmap/icon</item>
-        <item name="android:windowSplashScreenAnimationDuration">1500</item>
+        <item name="android:windowSplashScreenAnimationDuration">2500</item>
         <!-- Set the theme of the Activity that directly follows your splash screen. -->
         <!-- Required -->
     </style>
