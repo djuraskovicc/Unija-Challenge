@@ -54,75 +54,17 @@ public class HttpCommunication {
         });
     }
 
-    public static void getRequest(Activity activity, OkHttpClient httpClient, String getUrl) {
+    public static String getRequest(OkHttpClient httpClient, String getUrl) throws IOException {
         Request request = new Request.Builder()
                 .url(getUrl)
                 .get()
                 .build();
 
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-                activity.runOnUiThread(() -> Utils.showToast(activity, "Something went wrong :("));
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                activity.runOnUiThread(() -> {
-                    try {
-                        if (response.code() == 200) {
-                            assert response.body() != null;
-                            String responseBody = response.body().string();
-                            response.close();
-                            Utils.showToast(activity, "Success");
-                            // Do something with the responseBody, e.g., print it or use it as needed
-                            System.out.println(responseBody);
-                        } else {
-                            Utils.showToast(activity, "Fail, Code: " + response.code());
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-        });
+        Response response = httpClient.newCall(request).execute();
+        if (response.isSuccessful() && response.body() != null) {
+            return response.body().string();
+        } else {
+            throw new IOException("Failed to fetch data, Code: " + response.code());
+        }
     }
-
-    /*public static void getRequest(Activity activity, OkHttpClient httpClient, File file, String getUrl){
-        Request request = new Request.Builder().url(getUrl).build();
-
-        httpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                activity.runOnUiThread(() -> {
-                    OkHttpClient client = new OkHttpClient();
-                    RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                            .addFormDataPart("fileUpload", file.getName(),
-                                    RequestBody.create(MediaType.parse("text/json"), file)).build();
-
-                    Request request1 = new Request.Builder()
-                            .url(getUrl)
-                            .post(requestBody)
-                            .build();
-                    Response response1;
-
-                    try {
-                        response1 = client.newCall(request1).execute();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    if (response1.code() != 200) {
-                        System.out.println("Something went wrong");
-                    }
-                });
-            }
-        });
-    }*/
 }
