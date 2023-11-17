@@ -28,7 +28,7 @@ public class Documents extends AppCompatActivity {
         documents = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_view);
 
-        new NetworkTask().execute("http://62.171.137.95:8080/api/files");
+        new NetworkTask().execute("http://165.227.135.100:8080/api/files");
     }
 
     private void loadItems(String fileContents) {
