@@ -1,5 +1,15 @@
 package com.example.challange;
 
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
@@ -9,12 +19,12 @@ import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageButton;
+
 import com.example.http.HttpCommunication;
 import com.google.common.util.concurrent.ListenableFuture;
+
 import java.io.File;
+
 import okhttp3.OkHttpClient;
 
 public class ImageScanner extends AppCompatActivity {
@@ -23,6 +33,7 @@ public class ImageScanner extends AppCompatActivity {
     PreviewView cameraView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ImageCapture imageCapture;
+    private MediaPlayer clickMediaPlayer; // Added this lines
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +49,14 @@ public class ImageScanner extends AppCompatActivity {
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
         startCameraPreview();
-        camera.setOnClickListener(picture -> captureImage());
+
+        // Initialize the MediaPlayer for the click sound
+        clickMediaPlayer = MediaPlayer.create(this, R.raw.click_sound);
+
+        camera.setOnClickListener(picture -> {
+            captureImage();
+            playClickSound();
+        });
     }
 
     private void startCameraPreview() {
@@ -69,7 +87,7 @@ public class ImageScanner extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
-    private void captureImage(){
+    private void captureImage() {
         if (imageCapture != null) {
             File fileOutput = new File(getExternalFilesDir(null), "image.jpg");
             ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(fileOutput).build();
@@ -88,6 +106,22 @@ public class ImageScanner extends AppCompatActivity {
             });
         } else {
             Log.e("ImageScanner", "ImageCapture is not initialized");
+        }
+    }
+
+    private void playClickSound() {
+        if (clickMediaPlayer != null) {
+            clickMediaPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Release MediaPlayer resources when the activity is destroyed
+        if (clickMediaPlayer != null) {
+            clickMediaPlayer.release();
+            clickMediaPlayer = null;
         }
     }
 }

@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            Utils.showToast(MainActivity.this, permissionsGranted ? "All permissions granted" : "Permissions required!");
+            //Utils.showToast(MainActivity.this, permissionsGranted ? "All permissions granted" : "Permissions required!");
         }
     }
 }
