@@ -1,4 +1,4 @@
-package com.example.challange;
+package com.example.challange.DocumentsActivity;
 
 public class DocumentItem {
     String fileName, uploadDate, fileContents;

@@ -2,7 +2,7 @@ package com.example.http;
 
 import android.app.Activity;
 import androidx.annotation.NonNull;
-import com.example.challange.Utils;
+import com.example.challange.MainActivity.Utils;
 import java.io.File;
 import java.io.IOException;
 import okhttp3.Call;

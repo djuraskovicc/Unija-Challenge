@@ -1,4 +1,4 @@
-package com.example.challange;
+package com.example.challange.SettingsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,12 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Switch;
+
+import com.example.challange.DrawerHelper.DrawerHelper;
+import com.example.challange.LoginActivity.Login;
+import com.example.challange.MainActivity.MainActivity;
+import com.example.challange.OCRActivity.ImageScanner;
+import com.example.challange.R;
 
 public class Settings extends AppCompatActivity {
 

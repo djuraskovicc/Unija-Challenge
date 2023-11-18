@@ -1,8 +1,10 @@
-package com.example.challange;
+package com.example.challange.DrawerHelper;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.challange.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;

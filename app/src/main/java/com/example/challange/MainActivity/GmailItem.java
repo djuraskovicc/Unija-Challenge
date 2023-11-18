@@ -1,4 +1,4 @@
-package com.example.challange;
+package com.example.challange.MainActivity;
 
 public class GmailItem {
     String email = "You have a new Mail !";

@@ -1,15 +1,9 @@
-package com.example.challange;
+package com.example.challange.OCRActivity;
 
-import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.Build;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
@@ -20,11 +14,10 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
+import com.example.challange.R;
 import com.example.http.HttpCommunication;
 import com.google.common.util.concurrent.ListenableFuture;
-
 import java.io.File;
-
 import okhttp3.OkHttpClient;
 
 public class ImageScanner extends AppCompatActivity {
@@ -33,7 +26,7 @@ public class ImageScanner extends AppCompatActivity {
     PreviewView cameraView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private ImageCapture imageCapture;
-    private MediaPlayer clickMediaPlayer; // Added this lines
+    private MediaPlayer clickMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

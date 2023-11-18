@@ -7,7 +7,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,33 +23,43 @@
         android:theme="@style/Theme.App.Challenge"
         tools:targetApi="31">
         <activity
-            android:name=".FileViewer"
+            android:name=".UploadedActivity.Image"
             android:exported="false"
-            android:parentActivityName=".Documents"/>
+            android:label="Images"
+            android:parentActivityName=".UploadedActivity.Uploaded"/>
         <activity
-            android:name=".Documents"
+            android:name=".UploadedActivity.Uploaded"
+            android:exported="false"
+            android:label="Uploaded"
+            android:parentActivityName=".MainActivity.MainActivity"/>
+        <activity
+            android:name=".DocumentsActivity.FileViewer"
+            android:exported="false"
+            android:parentActivityName=".DocumentsActivity.Documents" />
+        <activity
+            android:name=".DocumentsActivity.Documents"
             android:exported="false"
             android:label="Documents"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity.MainActivity" />
         <activity
-            android:name=".Settings"
+            android:name=".SettingsActivity.Settings"
             android:exported="false"
-            android:label="Settings"/>
+            android:label="Settings" />
         <activity
-            android:name=".ImageScanner"
+            android:name=".OCRActivity.ImageScanner"
             android:exported="false"
             android:label="Document scanner"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity.MainActivity" />
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity.Login"
             android:exported="false"
             android:label="Account"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity.MainActivity" />
         <activity
-            android:theme="@style/Theme.App.Starting"
-            android:name=".MainActivity"
+            android:name=".MainActivity.MainActivity"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

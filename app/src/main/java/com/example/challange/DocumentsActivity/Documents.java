@@ -1,10 +1,13 @@
-package com.example.challange;
+package com.example.challange.DocumentsActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.challange.R;
+import com.example.challange.MainActivity.Utils;
 import com.example.http.HttpCommunication;
 import org.json.JSONArray;
 import org.json.JSONException;

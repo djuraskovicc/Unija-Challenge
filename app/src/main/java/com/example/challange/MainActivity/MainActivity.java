@@ -1,11 +1,10 @@
-package com.example.challange;
+package com.example.challange.MainActivity;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
@@ -14,9 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.challange.DocumentsActivity.Documents;
+import com.example.challange.DrawerHelper.DrawerHelper;
+import com.example.challange.OCRActivity.ImageScanner;
+import com.example.challange.LoginActivity.Login;
+import com.example.challange.R;
+import com.example.challange.SettingsActivity.Settings;
+import com.example.challange.UploadedActivity.Uploaded;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(!checkCameraPermission()
                 || !checkStoragePermission()
-                || !checkInternetPermission()){
+                || !checkInternetPermission()
+                || !checkNotificationPermission()){
+
             requestPermissions();
         }
 
@@ -74,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else if (itemID == R.id.documents) {
                 startActivity(new Intent(MainActivity.this, Documents.class));
+            } else if (itemID == R.id.upload) {
+                startActivity(new Intent(MainActivity.this, Uploaded.class));
             }
 
             drawerHelper.getDrawerLayout().closeDrawers();
@@ -104,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void requestPermissions(){
-        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.INTERNET};
+        String[] permissions = {Manifest.permission.CAMERA,
+                Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.INTERNET, Manifest.permission.POST_NOTIFICATIONS};
         ActivityCompat.requestPermissions(MainActivity.this, permissions, REQUEST_PERMISSIONS);
     }
 
@@ -126,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
                 Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean checkNotificationPermission() {
+        return ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED;
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -140,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            //Utils.showToast(MainActivity.this, permissionsGranted ? "All permissions granted" : "Permissions required!");
+            Utils.showToast(MainActivity.this, permissionsGranted ? "All permissions granted" : "Permissions required!");
         }
     }
 }

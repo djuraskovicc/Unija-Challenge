@@ -1,9 +1,12 @@
-package com.example.challange;
+package com.example.challange.LoginActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.challange.MainActivity.Utils;
+import com.example.challange.R;
 
 public class Login extends AppCompatActivity {
     EditText username;

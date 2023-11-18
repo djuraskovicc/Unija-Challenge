@@ -1,8 +1,10 @@
-package com.example.challange;
+package com.example.challange.DocumentsActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.challange.R;
 
 public class FileViewer extends AppCompatActivity {
     TextView textView;
